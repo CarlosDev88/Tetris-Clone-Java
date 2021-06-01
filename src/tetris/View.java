@@ -26,6 +26,9 @@ public class View extends JFrame implements Runnable {
 		this.setVisible(true);
 		this.addKeyListener(controll);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		controll.setFinalX(column);
+		controll.setFinalY(row);
+
 		Thread thread = new Thread(this);
 		thread.start();
 	}
@@ -67,7 +70,7 @@ public class View extends JFrame implements Runnable {
 
 		while (true) {
 			try {
-				Thread.sleep(100);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
