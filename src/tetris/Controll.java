@@ -1,7 +1,11 @@
+//vamos en el minuto 1:20:28
+
+
 package tetris;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class Controll implements KeyListener {
 
@@ -13,13 +17,17 @@ public class Controll implements KeyListener {
 	private int finalY;
 
 	public Controll() {
-		currentPiece = this.createPiece();
-		this.movePieceInitialPosition();
+		currentPiece = new Piece();
+		this.createPiece();
+		
 	}
 
-	public Piece createPiece() {
-		Piece p = new Piece(5);
-		return p;
+	public void createPiece() {
+		Random r = new Random();
+		int idPiece = r.nextInt(currentPiece.piecesNames.length);
+		currentPiece = new Piece(idPiece);
+		this.movePieceInitialPosition();
+		
 
 	}
 
@@ -48,6 +56,8 @@ public class Controll implements KeyListener {
 	public void execute() {
 		if (!isEndBoard()) {
 			this.moveDownPieces();
+		}else {
+			this.createPiece();
 		}
 
 	}

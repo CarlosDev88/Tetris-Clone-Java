@@ -47,6 +47,10 @@ public class Piece {
 		}
 	}
 
+	public Piece() {
+		
+	}
+
 	public ArrayList<Coordinate> createPieceI() {
 		ArrayList<Coordinate> listCoordinates = new ArrayList<Coordinate>();
 
