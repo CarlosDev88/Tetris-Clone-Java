@@ -9,11 +9,13 @@ import javax.swing.JFrame;
 public class View extends JFrame implements Runnable {
 
 	private final int WIDTH = 1000;
-	private final int HEIGHT = 800;
-	private int row = 30;
-	private int column = 10;
+	private final int HEIGHT = 720;
+	private int row = 23;
+	private int column = 11;
 	private int boardDisplace = 100;
-	private int cellSize = 20;
+	private int cellSize = 25;
+
+	Controll controll = new Controll();
 
 	BufferedImage bi = new BufferedImage(this.WIDTH, this.HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
 	Graphics gbi = bi.getGraphics();
@@ -22,7 +24,10 @@ public class View extends JFrame implements Runnable {
 		this.setTitle("Tetris Clone");
 		this.setSize(this.WIDTH, this.HEIGHT);
 		this.setVisible(true);
+		this.addKeyListener(controll);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Thread thread = new Thread(this);
+		thread.start();
 	}
 
 	public void paintBackground(Graphics g) {
@@ -48,6 +53,16 @@ public class View extends JFrame implements Runnable {
 	}
 
 	public void run() {
+
+		while (true) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+
+				e.printStackTrace();
+			}
+			this.repaint();
+		}
 
 	}
 
