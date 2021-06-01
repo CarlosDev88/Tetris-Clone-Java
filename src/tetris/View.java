@@ -30,6 +30,13 @@ public class View extends JFrame implements Runnable {
 		thread.start();
 	}
 
+	public void paint(Graphics g) {
+		this.paintBackground(gbi);
+		this.paintBoard(gbi);
+		this.paintCurrentPiece(gbi);
+		g.drawImage(bi, 10, 10, this.WIDTH, this.HEIGHT, this);
+	}
+
 	public void paintBackground(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(10, 10, this.WIDTH, this.HEIGHT);
@@ -46,10 +53,14 @@ public class View extends JFrame implements Runnable {
 		}
 	}
 
-	public void paint(Graphics g) {
-		this.paintBackground(gbi);
-		this.paintBoard(gbi);
-		g.drawImage(bi, 10, 10, this.WIDTH, this.HEIGHT, this);
+	public void paintCurrentPiece(Graphics g) {
+		Piece piece = this.controll.getCurrentPiece();
+
+		for (Coordinate c : piece.getBody()) {
+			g.setColor(piece.getPieceColor());
+			g.fillRect(boardDisplace + (c.getX() * cellSize), boardDisplace + (c.getY() * cellSize), cellSize,
+					cellSize);
+		}
 	}
 
 	public void run() {
@@ -61,6 +72,7 @@ public class View extends JFrame implements Runnable {
 
 				e.printStackTrace();
 			}
+			controll.execute();
 			this.repaint();
 		}
 
