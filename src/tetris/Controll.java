@@ -9,16 +9,36 @@ import java.util.Random;
 public class Controll implements KeyListener {
 
 	Piece currentPiece;
-
+	Action actionKey;
 	private int initialX = 5;
 	private int initialY = 0;
 	private int finalX;
 	private int finalY;
+	private int BoardRightBound;
+	private int BoardLeftBound = 0;
+
+	public int getBoardRightBound() {
+		return BoardRightBound;
+	}
+
+	public void setBoardRightBound(int boardRightBound) {
+		BoardRightBound = boardRightBound;
+	}
+
+	public int getBoardLeftBound() {
+		return BoardLeftBound;
+	}
+
+	public void setBoardLeftBound(int boardLeftBound) {
+		BoardLeftBound = boardLeftBound;
+	}
+
 	ArrayList<Piece> PieceList = new ArrayList<Piece>();
 
 	public Controll() {
 		currentPiece = new Piece();
 		this.createPiece();
+		actionKey = Action.NOTHING;
 
 	}
 
@@ -52,7 +72,38 @@ public class Controll implements KeyListener {
 		}
 	}
 
+	public void moveRightPiece() {
+		for (Coordinate coordinate : currentPiece.getBody()) {
+			int x = coordinate.getX();
+			x += 1;
+			coordinate.setX(x);
+		}
+
+	}
+
+	public void moveLeftPiece() {
+		for (Coordinate coordinate : currentPiece.getBody()) {
+			int x = coordinate.getX();
+			x -= 1;
+			coordinate.setX(x);
+		}
+
+	}
+
 	public void execute() {
+
+		if (this.isMove()) {
+			if (actionKey == Action.LEFT) {
+				this.moveLeftPiece();
+			}
+
+			if (actionKey == Action.RIGHT) {
+				this.moveRightPiece();
+			}
+
+			actionKey = Action.NOTHING;
+		}
+
 		if (!isEndBoard() && !isPieceCollition()) {
 			this.moveDownPieces();
 		} else {
@@ -79,7 +130,7 @@ public class Controll implements KeyListener {
 		for (Piece piece : PieceList) {
 			for (Coordinate cB : piece.getBody()) {
 				for (Coordinate cP : currentPiece.getBody()) {
-					if (cP.getY() + 1 == cB.getY() && cP.getX() + 1 == cB.getX()) {
+					if (cP.getY() + 1 == cB.getY() && cP.getX() == cB.getX()) {
 						isColition = true;
 					}
 				}
@@ -89,12 +140,49 @@ public class Controll implements KeyListener {
 		return isColition;
 	}
 
+	public boolean isMove() {
+		boolean isMove = true;
+		for (Coordinate c : currentPiece.getBody()) {
+
+			if (actionKey == Action.RIGHT) {
+				if (c.getX() + 1 == this.BoardRightBound) {
+					isMove = false;
+				}
+			}
+
+			if (actionKey == Action.LEFT) {
+				if (c.getX() == this.BoardLeftBound) {
+					isMove = false;
+				}
+			}
+
+		}
+		return isMove;
+	}
+
 	public void keyTyped(KeyEvent e) {
 
 	}
 
 	public void keyPressed(KeyEvent e) {
+		char key = e.getKeyChar();
 
+		switch (key) {
+		case 'a': {
+			actionKey = Action.LEFT;
+		}
+			break;
+		case 'd': {
+			actionKey = Action.RIGHT;
+		}
+			break;
+		case ' ': {
+			actionKey = Action.SPACE;
+		}
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {

@@ -27,7 +27,8 @@ public class View extends JFrame implements Runnable {
 		this.addKeyListener(controll);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		controll.setFinalX(column);
-		controll.setFinalY(row);
+		controll.setFinalY(row);		
+		controll.setBoardRightBound(column);
 
 		Thread thread = new Thread(this);
 		thread.start();
