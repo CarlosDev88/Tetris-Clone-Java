@@ -7,31 +7,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Controll implements KeyListener {
-
 	Piece currentPiece;
 	Action actionKey;
+
 	private int initialX = 5;
 	private int initialY = 0;
 	private int finalX;
 	private int finalY;
 	private int BoardRightBound;
 	private int BoardLeftBound = 0;
-
-	public int getBoardRightBound() {
-		return BoardRightBound;
-	}
-
-	public void setBoardRightBound(int boardRightBound) {
-		BoardRightBound = boardRightBound;
-	}
-
-	public int getBoardLeftBound() {
-		return BoardLeftBound;
-	}
-
-	public void setBoardLeftBound(int boardLeftBound) {
-		BoardLeftBound = boardLeftBound;
-	}
 
 	ArrayList<Piece> PieceList = new ArrayList<Piece>();
 
@@ -64,8 +48,7 @@ public class Controll implements KeyListener {
 	}
 
 	public void moveDownPieces() {
-		for (Coordinate coordinate : currentPiece.getBody()) {
-			// int pX = coordinate.getX();
+		for (Coordinate coordinate : currentPiece.getBody()) {		
 			int pY = coordinate.getY();
 			int cY = pY + 1;
 			coordinate.setY(cY);
@@ -78,7 +61,6 @@ public class Controll implements KeyListener {
 			x += 1;
 			coordinate.setX(x);
 		}
-
 	}
 
 	public void moveLeftPiece() {
@@ -87,20 +69,23 @@ public class Controll implements KeyListener {
 			x -= 1;
 			coordinate.setX(x);
 		}
+	}
 
+	public void rotatePiece() {
+		currentPiece.rotate();
 	}
 
 	public void execute() {
-
 		if (this.isMove()) {
 			if (actionKey == Action.LEFT) {
 				this.moveLeftPiece();
 			}
-
 			if (actionKey == Action.RIGHT) {
 				this.moveRightPiece();
 			}
-
+			if (actionKey == Action.SPACE) {
+				this.rotatePiece();
+			}
 			actionKey = Action.NOTHING;
 		}
 
@@ -217,10 +202,12 @@ public class Controll implements KeyListener {
 		PieceList = pieceList;
 	}
 
-	/*
-	 * 
-	 * public void setCurrentPiece(Piece currentPiece) { this.currentPiece =
-	 * currentPiece; }
-	 */
+	public int getBoardRightBound() {
+		return BoardRightBound;
+	}
+
+	public void setBoardRightBound(int boardRightBound) {
+		BoardRightBound = boardRightBound;
+	}
 
 }

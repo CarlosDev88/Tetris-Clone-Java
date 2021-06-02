@@ -48,7 +48,7 @@ public class Piece {
 	}
 
 	public Piece() {
-		
+
 	}
 
 	public ArrayList<Coordinate> createPieceI() {
@@ -184,6 +184,21 @@ public class Piece {
 		this.pieceColor = Color.ORANGE;
 		this.center = this.getBody().get(2);
 		return this.getBody();
+	}
+
+	public void rotate() {
+		Coordinate center = this.getCenter();
+
+		for (Coordinate c : this.getBody()) {
+			int centerX = center.getX();
+			int centerY = center.getY();
+			int centerPiceX = c.getX() - centerX;
+			int centerPieceY = c.getY() - centerY;
+			int x = center.getX() + centerPieceY;
+			int y = center.getY() - centerPiceX;
+			c.setX(x);
+			c.setY(y);
+		}
 	}
 
 	public String[] getPiecesNames() {
