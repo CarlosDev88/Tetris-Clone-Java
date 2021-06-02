@@ -54,14 +54,21 @@ public class Piece {
 	public ArrayList<Coordinate> createPieceI() {
 		ArrayList<Coordinate> listCoordinates = new ArrayList<Coordinate>();
 
-		for (int i = 0; i < 4; i++) {
-			Coordinate p1 = new Coordinate(i, 0);
-			listCoordinates.add(p1);
-		}
+		Coordinate p1 = new Coordinate(0, 0);
+		Coordinate p2 = new Coordinate(1, 0);
+		Coordinate p3 = new Coordinate(2, 0);
+		Coordinate p4 = new Coordinate(3, 0);
+		
+		listCoordinates.add(p1);
+		listCoordinates.add(p2);
+		listCoordinates.add(p3);
+		listCoordinates.add(p4);
 
 		body = listCoordinates;
 		id = piecesNames[0];
 		this.pieceColor = Color.RED;
+		p1.setColor(pieceColor);
+
 		this.center = this.getBody().get(3);
 		return this.getBody();
 	}
@@ -82,6 +89,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[1];
 		this.pieceColor = Color.MAGENTA;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(3);
 		return this.getBody();
 	}
@@ -102,6 +110,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[2];
 		this.pieceColor = Color.GREEN;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(3);
 		return this.getBody();
 	}
@@ -122,6 +131,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[3];
 		this.pieceColor = Color.PINK;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -142,6 +152,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[4];
 		this.pieceColor = Color.DARK_GRAY;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -162,6 +173,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[5];
 		this.pieceColor = Color.YELLOW;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -182,6 +194,7 @@ public class Piece {
 		body = listCoordinates;
 		id = piecesNames[6];
 		this.pieceColor = Color.ORANGE;
+		p1.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}

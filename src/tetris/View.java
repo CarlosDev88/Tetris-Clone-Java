@@ -27,7 +27,7 @@ public class View extends JFrame implements Runnable {
 		this.addKeyListener(controll);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		controll.setFinalX(column);
-		controll.setFinalY(row);		
+		controll.setFinalY(row);
 		controll.setBoardRightBound(column);
 
 		Thread thread = new Thread(this);
@@ -69,14 +69,11 @@ public class View extends JFrame implements Runnable {
 	}
 
 	public void paintPiecesBoard(Graphics g) {
-		for (Piece piece : controll.getPieceList()) {
-			for (Coordinate c : piece.getBody()) {
-				g.setColor(piece.getPieceColor());
-				g.fillRect(boardDisplace + (c.getX() * cellSize), boardDisplace + (c.getY() * cellSize), cellSize,
-						cellSize);
-			}
+		for (Coordinate c : controll.getPieceList()) {
+			g.setColor(c.getColor());
+			g.fillRect(boardDisplace + (c.getX() * cellSize), boardDisplace + (c.getY() * cellSize), cellSize,
+					cellSize);
 		}
-
 	}
 
 	public void run() {

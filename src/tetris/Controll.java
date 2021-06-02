@@ -17,7 +17,10 @@ public class Controll implements KeyListener {
 	private int BoardRightBound;
 	private int BoardLeftBound = 0;
 
-	ArrayList<Piece> PieceList = new ArrayList<Piece>();
+	
+	ArrayList<Coordinate> pieceList = new ArrayList<Coordinate>();
+
+	
 
 	public Controll() {
 		currentPiece = new Piece();
@@ -48,7 +51,7 @@ public class Controll implements KeyListener {
 	}
 
 	public void moveDownPieces() {
-		for (Coordinate coordinate : currentPiece.getBody()) {		
+		for (Coordinate coordinate : currentPiece.getBody()) {
 			int pY = coordinate.getY();
 			int cY = pY + 1;
 			coordinate.setY(cY);
@@ -92,7 +95,7 @@ public class Controll implements KeyListener {
 		if (!isEndBoard() && !isPieceCollition()) {
 			this.moveDownPieces();
 		} else {
-			this.getPieceList().add(currentPiece);
+			this.getPieceList().addAll(currentPiece.getBody());
 			this.createPiece();
 		}
 
@@ -110,19 +113,17 @@ public class Controll implements KeyListener {
 	}
 
 	public boolean isPieceCollition() {
-		boolean isColition = false;
+		boolean isCollition = false;
 
-		for (Piece piece : PieceList) {
-			for (Coordinate cB : piece.getBody()) {
-				for (Coordinate cP : currentPiece.getBody()) {
-					if (cP.getY() + 1 == cB.getY() && cP.getX() == cB.getX()) {
-						isColition = true;
-					}
+		for (Coordinate cB : this.pieceList) {
+			for (Coordinate cP : currentPiece.getBody()) {
+				if (cP.getY() + 1 == cB.getY() && cP.getX() == cB.getX()) {
+					isCollition = true;
 				}
 			}
 		}
 
-		return isColition;
+		return isCollition;
 	}
 
 	public boolean isMove() {
@@ -194,20 +195,20 @@ public class Controll implements KeyListener {
 		this.finalY = finalY;
 	}
 
-	public ArrayList<Piece> getPieceList() {
-		return PieceList;
-	}
-
-	public void setPieceList(ArrayList<Piece> pieceList) {
-		PieceList = pieceList;
-	}
-
 	public int getBoardRightBound() {
 		return BoardRightBound;
 	}
 
 	public void setBoardRightBound(int boardRightBound) {
 		BoardRightBound = boardRightBound;
+	}
+	
+	public ArrayList<Coordinate> getPieceList() {
+		return pieceList;
+	}
+
+	public void setPieceList(ArrayList<Coordinate> pieceList) {
+		this.pieceList = pieceList;
 	}
 
 }

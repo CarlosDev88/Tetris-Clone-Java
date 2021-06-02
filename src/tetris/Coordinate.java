@@ -1,8 +1,12 @@
 package tetris;
 
+import java.awt.Color;
+
 public class Coordinate {
 	private int x;
 	private int y;
+	private Color color;
+	
 
 	public Coordinate() {
 		this.x = 0;
@@ -28,6 +32,14 @@ public class Coordinate {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }
