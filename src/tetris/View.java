@@ -37,6 +37,7 @@ public class View extends JFrame implements Runnable {
 		this.paintBackground(gbi);
 		this.paintBoard(gbi);
 		this.paintCurrentPiece(gbi);
+		this.paintPiecesBoard(gbi);
 		g.drawImage(bi, 10, 10, this.WIDTH, this.HEIGHT, this);
 	}
 
@@ -64,6 +65,17 @@ public class View extends JFrame implements Runnable {
 			g.fillRect(boardDisplace + (c.getX() * cellSize), boardDisplace + (c.getY() * cellSize), cellSize,
 					cellSize);
 		}
+	}
+
+	public void paintPiecesBoard(Graphics g) {
+		for (Piece piece : controll.getPieceList()) {
+			for (Coordinate c : piece.getBody()) {
+				g.setColor(piece.getPieceColor());
+				g.fillRect(boardDisplace + (c.getX() * cellSize), boardDisplace + (c.getY() * cellSize), cellSize,
+						cellSize);
+			}
+		}
+
 	}
 
 	public void run() {

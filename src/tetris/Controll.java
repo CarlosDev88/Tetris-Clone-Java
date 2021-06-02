@@ -1,10 +1,9 @@
-//vamos en el minuto 1:20:28
-
 
 package tetris;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Controll implements KeyListener {
@@ -15,11 +14,12 @@ public class Controll implements KeyListener {
 	private int initialY = 0;
 	private int finalX;
 	private int finalY;
+	ArrayList<Piece> PieceList = new ArrayList<Piece>();
 
 	public Controll() {
 		currentPiece = new Piece();
 		this.createPiece();
-		
+
 	}
 
 	public void createPiece() {
@@ -27,7 +27,6 @@ public class Controll implements KeyListener {
 		int idPiece = r.nextInt(currentPiece.piecesNames.length);
 		currentPiece = new Piece(idPiece);
 		this.movePieceInitialPosition();
-		
 
 	}
 
@@ -54,9 +53,10 @@ public class Controll implements KeyListener {
 	}
 
 	public void execute() {
-		if (!isEndBoard()) {
+		if (!isEndBoard() && !isPieceCollition()) {
 			this.moveDownPieces();
-		}else {
+		} else {
+			this.getPieceList().add(currentPiece);
 			this.createPiece();
 		}
 
@@ -71,6 +71,22 @@ public class Controll implements KeyListener {
 		}
 
 		return isEnd;
+	}
+
+	public boolean isPieceCollition() {
+		boolean isColition = false;
+
+		for (Piece piece : PieceList) {
+			for (Coordinate cB : piece.getBody()) {
+				for (Coordinate cP : currentPiece.getBody()) {
+					if (cP.getY() + 1 == cB.getY() && cP.getX() + 1 == cB.getX()) {
+						isColition = true;
+					}
+				}
+			}
+		}
+
+		return isColition;
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -103,6 +119,14 @@ public class Controll implements KeyListener {
 
 	public void setFinalY(int finalY) {
 		this.finalY = finalY;
+	}
+
+	public ArrayList<Piece> getPieceList() {
+		return PieceList;
+	}
+
+	public void setPieceList(ArrayList<Piece> pieceList) {
+		PieceList = pieceList;
 	}
 
 	/*
