@@ -1,9 +1,13 @@
 
+//minuto 1:25
+
 package tetris;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Controll implements KeyListener {
@@ -16,11 +20,9 @@ public class Controll implements KeyListener {
 	private int finalY;
 	private int BoardRightBound;
 	private int BoardLeftBound = 0;
+	Comparator comparator = new Comparation();
 
-	
 	ArrayList<Coordinate> pieceList = new ArrayList<Coordinate>();
-
-	
 
 	public Controll() {
 		currentPiece = new Piece();
@@ -97,6 +99,10 @@ public class Controll implements KeyListener {
 		} else {
 			this.getPieceList().addAll(currentPiece.getBody());
 			this.createPiece();
+			this.orderCoordinate();
+			this.printCoordinate();
+			this.isLine();
+
 		}
 
 	}
@@ -144,6 +150,47 @@ public class Controll implements KeyListener {
 
 		}
 		return isMove;
+	}
+
+	public boolean isLine() {
+		int counter = 0;
+		boolean isLine = false;
+
+		for (int i = 0; i < finalY; i++) {
+			for (int j = 0; j < this.pieceList.size(); j++) {
+				Coordinate c = this.pieceList.get(j);
+				if (i == c.getY()) {
+					counter++;
+
+					if (counter == finalX) {
+						int from = (j + 1) - finalX;				
+
+						isLine = true;
+						for (int x = 0; x < finalX; x++) {							
+							this.pieceList.remove(from);
+
+						}
+					}
+				}
+
+			}
+			counter = 0;
+		}
+
+		return isLine;
+	}
+
+	public void orderCoordinate() {
+		this.pieceList.sort(comparator);
+	}
+
+	public void printCoordinate() {
+		Iterator<Coordinate> it = this.pieceList.iterator();
+
+		while (it.hasNext()) {
+			Coordinate c = it.next();
+			System.out.println(c.toString());
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -202,7 +249,7 @@ public class Controll implements KeyListener {
 	public void setBoardRightBound(int boardRightBound) {
 		BoardRightBound = boardRightBound;
 	}
-	
+
 	public ArrayList<Coordinate> getPieceList() {
 		return pieceList;
 	}

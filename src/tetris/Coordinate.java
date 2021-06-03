@@ -2,7 +2,9 @@ package tetris;
 
 import java.awt.Color;
 
-public class Coordinate {
+public class Coordinate implements Comparable<Coordinate>{
+
+
 	private int x;
 	private int y;
 	private Color color;
@@ -40,6 +42,16 @@ public class Coordinate {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	@Override
+	public int compareTo(Coordinate o) {		
+		return this.getY() - o.getY();
+	}
+	
+	@Override
+	public String toString() {
+		return "Coordinate [x=" + x + ", y=" + y + "]";
 	}
 
 }

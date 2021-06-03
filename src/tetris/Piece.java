@@ -68,6 +68,9 @@ public class Piece {
 		id = piecesNames[0];
 		this.pieceColor = Color.RED;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 
 		this.center = this.getBody().get(3);
 		return this.getBody();
@@ -90,6 +93,9 @@ public class Piece {
 		id = piecesNames[1];
 		this.pieceColor = Color.MAGENTA;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(3);
 		return this.getBody();
 	}
@@ -111,6 +117,9 @@ public class Piece {
 		id = piecesNames[2];
 		this.pieceColor = Color.GREEN;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(3);
 		return this.getBody();
 	}
@@ -132,6 +141,9 @@ public class Piece {
 		id = piecesNames[3];
 		this.pieceColor = Color.PINK;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -153,6 +165,9 @@ public class Piece {
 		id = piecesNames[4];
 		this.pieceColor = Color.DARK_GRAY;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -174,6 +189,9 @@ public class Piece {
 		id = piecesNames[5];
 		this.pieceColor = Color.YELLOW;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
@@ -195,6 +213,9 @@ public class Piece {
 		id = piecesNames[6];
 		this.pieceColor = Color.ORANGE;
 		p1.setColor(pieceColor);
+		p2.setColor(pieceColor);
+		p3.setColor(pieceColor);
+		p4.setColor(pieceColor);
 		this.center = this.getBody().get(2);
 		return this.getBody();
 	}
