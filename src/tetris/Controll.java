@@ -1,8 +1,7 @@
 
-//minuto 1:25
-
 package tetris;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -13,6 +12,8 @@ import java.util.Random;
 public class Controll implements KeyListener {
 	Piece currentPiece;
 	Action actionKey;
+	Comparator comparator = new Comparation();
+	ArrayList<Coordinate> pieceList = new ArrayList<Coordinate>();
 
 	private int initialX = 5;
 	private int initialY = 0;
@@ -20,9 +21,7 @@ public class Controll implements KeyListener {
 	private int finalY;
 	private int BoardRightBound;
 	private int BoardLeftBound = 0;
-	Comparator comparator = new Comparation();
-
-	ArrayList<Coordinate> pieceList = new ArrayList<Coordinate>();
+	int score = 0;
 
 	public Controll() {
 		currentPiece = new Piece();
@@ -57,6 +56,15 @@ public class Controll implements KeyListener {
 			int pY = coordinate.getY();
 			int cY = pY + 1;
 			coordinate.setY(cY);
+		}
+	}
+
+	public void moveDownAll() {
+		for (Coordinate c : this.pieceList) {
+			int y = c.getY();
+			y++;
+			c.setY(y);
+
 		}
 	}
 
@@ -163,13 +171,14 @@ public class Controll implements KeyListener {
 					counter++;
 
 					if (counter == finalX) {
-						int from = (j + 1) - finalX;				
+						int from = (j + 1) - finalX;
 
 						isLine = true;
-						for (int x = 0; x < finalX; x++) {							
+						for (int x = 0; x < finalX; x++) {
 							this.pieceList.remove(from);
-
 						}
+						this.score++;
+						break;						
 					}
 				}
 
@@ -179,6 +188,8 @@ public class Controll implements KeyListener {
 
 		return isLine;
 	}
+	
+	
 
 	public void orderCoordinate() {
 		this.pieceList.sort(comparator);

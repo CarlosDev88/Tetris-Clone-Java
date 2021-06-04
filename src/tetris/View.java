@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class View extends JFrame implements Runnable {
 
-	private final int WIDTH = 1000;
+	private final int WIDTH = 500;
 	private final int HEIGHT = 720;
 	private int row = 23;
 	private int column = 11;
@@ -39,11 +39,18 @@ public class View extends JFrame implements Runnable {
 		this.paintBoard(gbi);
 		this.paintCurrentPiece(gbi);
 		this.paintPiecesBoard(gbi);
+		this.paintScore(gbi);		
 		g.drawImage(bi, 10, 10, this.WIDTH, this.HEIGHT, this);
+	}
+	
+	public void paintScore(Graphics g) {
+		g.setColor(Color.WHITE);		
+		g.drawString("Puntos: ",100,50);
+		g.drawString(Integer.toString(controll.score),150,50);
 	}
 
 	public void paintBackground(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.BLACK);
 		g.fillRect(10, 10, this.WIDTH, this.HEIGHT);
 	}
 

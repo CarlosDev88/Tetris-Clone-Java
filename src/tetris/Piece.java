@@ -163,7 +163,7 @@ public class Piece {
 
 		body = listCoordinates;
 		id = piecesNames[4];
-		this.pieceColor = Color.DARK_GRAY;
+		this.pieceColor = Color.BLUE;
 		p1.setColor(pieceColor);
 		p2.setColor(pieceColor);
 		p3.setColor(pieceColor);
