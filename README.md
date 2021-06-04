@@ -8,7 +8,8 @@ java
 java swing
 
 # Screen shots 
-https://github.com/CarlosDev88/Tetris-Clone-Java/blob/main/tetris.gif
+![Tetris Clone](https://github.com/CarlosDev88/Tetris-Clone-Java/blob/main/tetris.gif)
+
 
 
 
